@@ -1,3 +1,5 @@
+import org.hamcrest.core.IsInstanceOf;
+
 /* This file contains a few exercises and TODOs for you to fill.
  * Make sure you do the TODOs in Bag.java, HandBag.java and CrossbodyBag.java
  * as the tasks in this file depends on the completion on those!
@@ -16,6 +18,16 @@ class BagMain {
      */
     public static void enhanceBags(Bag[] bags, boolean double_enhance_handbags) {
         // TODO: Implement this.
+        for (Bag b: bags) {
+            if (b instanceof HandBag || b instanceof CrossbodyBag) {
+                b.enhance();
+            } else {
+                b.increaseCapacity(1);
+            }
+            if (double_enhance_handbags && b instanceof HandBag) {
+                b.increaseCapacity(1);
+            }
+        }
     }
 
     /**
@@ -29,5 +41,11 @@ class BagMain {
      */
     public static int countCrossbodyStraps(Bag[] bags) {
         // TODO: Implement this.
+        int count = 0;
+        for (Bag b: bags) {
+            if (b instanceof CrossbodyBag) {
+                count += ((CrossbodyBag) b).getNumberOfStraps();
+            }
+        } return count;
     }
 }
